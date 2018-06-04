@@ -15,7 +15,7 @@ class test extends Controller{
 //        $header[] = 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9;q=0.8';
 //        $header[] = 'Referer: https://v.qq.com/tv/';
 //        $header[] = 'Host: v.qq.com';
-//        $header[] = 'User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36';
+//        $header[] = 'Users-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36';
         $curl_a = curl_init(); //初始化
         curl_setopt($curl_a, CURLOPT_URL, "http://new-play.tudou.com/v/906003134.html?spm=a2h28.8514923.category.5%213~5%212~5~5~A"); //设置访问的URL
         curl_setopt($curl_a, CURLOPT_RETURNTRANSFER, true); //执行之后不直接打印出来

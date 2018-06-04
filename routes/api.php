@@ -19,6 +19,10 @@ $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api'
 ], function($api) {
     //主页
-    $api->get('index', 'IndexController@index')
-        ->name('v1.index');
+    $api->get('master/index', 'IndexController@index')
+        ->name('v1.master.index');
+    $api->post('master/login','MasterController@login')
+        ->name('v1.master.login');
+    $api->get('master/users/{id}','MasterController@show')
+        ->name('v1.master.users.show');
 });

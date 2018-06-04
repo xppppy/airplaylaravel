@@ -7,17 +7,18 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable implements JWTSubject
+class Users extends Authenticatable implements JWTSubject
 {
-    use Usertable;
 
+
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'password',
+        'name','account', 'password',
     ];
 
     /**
