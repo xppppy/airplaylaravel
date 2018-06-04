@@ -12,12 +12,17 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-$app = app('Dingo\Api\Provider\LumenServiceProvider');
-$api->version('v1', function ($api) {
 
+$api = app('Dingo\Api\Routing\Router');
+
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Api'
+], function($api) {
+    //主页
+    $api->get('master/index', 'IndexController@index')
+        ->name('v1.master.index');
+    $api->post('master/login','MasterController@login')
+        ->name('v1.master.login');
+    $api->get('master/users/{id}','MasterController@show')
+        ->name('v1.master.users.show');
 });
-//$app->register('Dingo\Api\Provider\LumenServiceProvider');
-//
-//$api->version('v1', function ($api) {
-//    $api->resource('users', 'UserController');
-//});
