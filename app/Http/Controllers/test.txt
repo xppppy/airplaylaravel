@@ -1,0 +1,22 @@
+ 通用:{
+    $a = "/<a\b[^>]+\bhref=\"([^\"]*)\"[^>]*>([\s\S]*?)<\/a>/is";//获取a标签相关内容
+    $img = '/<img.*?src="(.*?)".*?>/is';//获取img标签相关内容
+    $title = '/<title>(.*)<\/title>/is';//获取title标签相关内容
+}
+腾讯视频：{
+    获取简介和图片:{
+        '/<p class=\"summary\">(.*)<\/p>/ism'//简介
+        "/<meta itemprop=\"image\" content=\"(.*)\">/"//视屏展示图片
+    }
+    获取剧集:{
+        "/<div class=\"mod_episode\".*?>.*?<\/div>/ism"//获取相关全部信息
+    }
+    获取往期:{
+        "/<ul class=\"figure_list\".*?>.*<\/ul>/is"//获取相关全部信息
+    }
+}
+土豆视频:{
+    获取剧集:{
+
+    }
+}

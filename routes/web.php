@@ -14,7 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', 'test@test',function () {
+Route::get('/test', 'TestController@test',function () {
     return 1;
 });
 Auth::routes();

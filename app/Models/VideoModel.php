@@ -7,27 +7,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Authenticatable implements JWTSubject
+class VideoModel extends Authenticatable implements JWTSubject
 {
+    protected $table = 'video';
 
-    protected $table = 'users';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name','account', 'password','created_at','updated_at'
+        'title','thum','sum','number','playerurl'
     ];
-
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'type_pid'
     ];
+    public function type(){
+        return $this->belongsTo('App\Models\VideoTypeModel','type_pid');
+    }
+    //
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -35,7 +28,6 @@ class Users extends Authenticatable implements JWTSubject
      */
     public function getJWTIdentifier() {
         // TODO: Implement getJWTIdentifier() method.
-        return $this->getKey();
     }
 
     /**
@@ -45,6 +37,5 @@ class Users extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         // TODO: Implement getJWTCustomClaims() method.
-        return [];
     }
 }
