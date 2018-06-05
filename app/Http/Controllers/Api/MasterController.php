@@ -30,7 +30,7 @@ class MasterController extends Controller {
             'msg' => '成功',
             'result' => [
                 'token' => $token,
-//              'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+              'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60*24*365
             ]
         ]);
     }
