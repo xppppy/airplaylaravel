@@ -1,6 +1,8 @@
 <?php
 
+
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Users;
 
 class UsersTableSeeder extends Seeder
@@ -15,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = app(Faker\Generator::class);
 
-        $users = factory(User::class)
+        $users = factory(Users::class)
             ->times(10)
             ->make();
 

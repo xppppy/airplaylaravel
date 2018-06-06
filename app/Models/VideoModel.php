@@ -6,7 +6,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
-
 class VideoModel extends Authenticatable implements JWTSubject
 {
     protected $table = 'video';
@@ -15,10 +14,10 @@ class VideoModel extends Authenticatable implements JWTSubject
         'title','thum','sum','number','playerurl'
     ];
     protected $hidden = [
-        'type_pid'
+        'type_id'
     ];
     public function type(){
-        return $this->belongsTo('App\Models\VideoTypeModel','type_pid');
+        return $this->belongsTo('App\Models\VideoTypeModel','type_id');
     }
     //
     /**

@@ -6,7 +6,6 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Illuminate\Database\Eloquent\Model;
-
 class VideoTypeModel extends Authenticatable implements JWTSubject
 {
     protected $table = 'type';

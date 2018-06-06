@@ -16,10 +16,10 @@ class CreateVideoTable extends Migration
         Schema::create('video', function (Blueprint $table) {
             $table->increments('id')->index();
             $table->string('title',36);
-            $table->string('thum',255);
+            $table->string('thum',200);
             $table->integer('sum');
             $table->integer('number');
-            $table->string('playerUrl',255);
+            $table->string('playerUrl',200);
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('type');
             $table->timestamps();
