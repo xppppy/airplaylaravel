@@ -50,13 +50,25 @@ $api->version('v1', [
             //修改保存
             $api->put('/{id}','VideoController@save')
                 ->name('v1.master.video.save');
-            $api->delete('/{id}','VideoController@destroy')
+            $api->delete('/','VideoController@destroy')
                 ->name('v1.master.video.destroy');
-
         });
         //新增影视
-        $api->post('/','VideoController@store')
+        $api->post('/new/video','VideoController@store')
             ->name('v1.master.video.store');
+
+        //分类管理------------------------------------------
+        $api->group(['prefix'=>'/cateory'],function ($api){
+            //新增分类信息
+            $api->post('/','CateoryController@store')
+                ->name('v1.master.cateory.store');
+            //修改分类信息
+            $api->put('/{id}','CateoryController@save')
+                ->name('v1.master.cateory.save');
+        });
+        //删除分类信息
+        $api->delete('/','CateoryController@destroy')
+            ->name('v1.master.cateory.destroy');
     });
 
 

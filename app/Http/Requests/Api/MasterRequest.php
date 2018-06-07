@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Api;
 
-
+//管理员登陆验证
 class MasterRequest extends BaseRequest
 {
 
@@ -14,6 +14,7 @@ class MasterRequest extends BaseRequest
      */
     public function rules()
     {
+        dump($this->all());
         return [
             'account' => 'required|string',
             'password' => 'required|string|min:2',

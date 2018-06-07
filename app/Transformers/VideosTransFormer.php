@@ -10,7 +10,6 @@ class VideosTransFormer extends TransformerAbstract{
         $aa = [];
         $i = 0;
         foreach ($video['data'] as $value){
-//            dump($aa[$i]['id'] = $value->id);
             $aa[$i]['id'] = $value->id;
             $aa[$i]['title'] = $value->title;
             $aa[$i]['thum'] = $value->thum;
@@ -30,21 +29,5 @@ class VideosTransFormer extends TransformerAbstract{
                 'data'=>$aa
             ]
         ];
-//        return [
-//            'code'=>200,
-//            'msg'=>'成功',
-//            'result'=>[
-////                'total'=>$total,
-//                'id'         => $video['data']->id,
-//                'title'      => $video['data']->title,
-//                'thum'       => $video['data']->thum,
-//                'sum'        => $video['data']->sum,
-//                'number'     => $video['data']->number,
-//                'playerUrl'  => $video['data']->playerUrl,
-//                'type'       => $video['data']->type->type,
-//                'created_at' => $video['data']->created_at->toDateTimeString(),
-//                'updated_at' => $video['data']->updated_at->toDateTimeString(),
-//            ],
-//        ];
     }
 }

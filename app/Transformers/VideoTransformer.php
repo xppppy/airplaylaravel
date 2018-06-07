@@ -18,8 +18,8 @@ class VideoTransformer extends TransformerAbstract {
                 'number'     => $video->number,
                 'playerUrl'  => $video->playerUrl,
                 'type'       => $video->type->type,
-                'created_at' => $video->created_at->toDateTimeString(),
-                'updated_at' => $video->updated_at->toDateTimeString(),
+//                'created_at' => $video->created_at->toDateTimeString(),
+//                'updated_at' => $video->updated_at->toDateTimeString(),
             ],
         ];
     }

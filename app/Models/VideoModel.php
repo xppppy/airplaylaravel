@@ -11,11 +11,11 @@ class VideoModel extends Authenticatable implements JWTSubject
     protected $table = 'video';
 
     protected $fillable = [
-        'title','thum','sum','number','playerurl'
+        'title','thum','sum','number','playerUrl','type_id'
     ];
-    protected $hidden = [
-        'type_id'
-    ];
+//    protected $hidden = [
+//        'type_id'
+//    ];
     public function type(){
         return $this->belongsTo('App\Models\VideoTypeModel','type_id');
     }

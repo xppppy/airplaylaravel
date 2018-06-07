@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api;
 use Illuminate\Support\Facades\Auth;
 
+//修改管理员消息验证
 class EditMasterRequest extends BaseRequest
 {
     /**
@@ -12,6 +13,7 @@ class EditMasterRequest extends BaseRequest
      */
     public function rules()
     {
+        dump($this->all());
         return [
             'account' => 'required|string|between:2,25|unique:users,account,'.Auth::id(),
             'password' => 'required|string|min:2',
