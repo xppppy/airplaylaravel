@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\master;
 
 
 use App\Http\Requests\Api\VideoRequest;
@@ -10,6 +10,7 @@ use App\Transformers\VideosTransFormer;
 use Dingo\Api\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Validator;
+
 
 class VideoController extends Controller
 {

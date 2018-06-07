@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\master;
 //
 use App\Http\Requests\Api\EditMasterRequest;
 use App\Http\Requests\Api\MasterRequest;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class MasterController extends Controller {
 

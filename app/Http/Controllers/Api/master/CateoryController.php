@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\master;
 
 use App\Models\VideoTypeModel;
 use Illuminate\Http\Request;
 use Validator;
+
 
 class CateoryController extends Controller {
 
