@@ -14,7 +14,7 @@ class VideoTableSeeder extends Seeder
     public function run()
     {
 
-        $videos = factory(App\Models\VideoModel::class)->times(10)->make();
+        $videos = factory(App\Models\VideoModel::class)->times(100)->make();
         $video_array = $videos->makeVisible(['type_id'])->toArray();
         VideoModel::insert($video_array);
     }

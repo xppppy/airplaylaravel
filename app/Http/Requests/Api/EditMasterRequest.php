@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Api;
+
 use Illuminate\Support\Facades\Auth;
 
 //修改管理员消息验证

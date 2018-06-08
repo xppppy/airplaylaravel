@@ -5,8 +5,6 @@ namespace App\Http\Requests\Api;
 //管理员登陆验证
 class MasterRequest extends BaseRequest
 {
-
-
     /**
      * Get the validation rules that apply to the request.
      *

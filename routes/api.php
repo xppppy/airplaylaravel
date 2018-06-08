@@ -16,12 +16,13 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api\master',
     'middleware' => 'serializer:array'
 ], function($api) {
     //后台路由
-    $api->group(['prefix'=>'master'],function ($api){
-
+    $api->group([
+        'prefix'=>'master',
+        'namespace' => 'App\Http\Controllers\Api\Master'
+    ],function ($api){
         //登陆
         $api->post('/login','MasterController@login')
             ->name('v1.master.login');
@@ -71,5 +72,18 @@ $api->version('v1', [
             ->name('v1.master.cateory.destroy');
     });
 
-
+    //前端路由-------------------------------------
+    $api->group([
+        'prefix'=>'web',
+        'namespace' => 'App\Http\Controllers\Api\Front'
+        ],function ($api){
+        $api->get('/videolist','WebController@show')
+            ->name('v1.web.show');
+        $api->get('/player','WebController@player')
+            ->name('v1.web.player');
+        $api->get('/index','WebController@index')
+            ->name('v1.web.index');
+        $api->get('/analysis','WebController@analysis')
+            ->name('v1.web.analysis');
+    });
 });

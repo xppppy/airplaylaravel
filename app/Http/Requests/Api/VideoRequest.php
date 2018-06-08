@@ -2,11 +2,6 @@
 
 namespace App\Http\Requests\Api;
 
-use App\Models\VideoModel;
-use Dingo\Api\Http\Request;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
-
 //用于修改消息验证
 class VideoRequest extends BaseRequest
 {

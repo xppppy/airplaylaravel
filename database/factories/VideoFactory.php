@@ -10,6 +10,7 @@ $factory->define(App\Models\VideoModel::class, function (Faker $faker) {
         'thum' => $faker->imageUrl(200,200),
         'sum'=>random_int(1,1000),
         'number'=>random_int(1,1000),
+        'hot'=>random_int(10,100)/10,
         'playerUrl' => $faker->url,
         'type_id'=>random_int(1,6),
         'created_at' => $now,

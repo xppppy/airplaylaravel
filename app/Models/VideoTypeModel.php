@@ -14,7 +14,7 @@ class VideoTypeModel extends Authenticatable implements JWTSubject
         'type'
     ];
     protected $hidden = [
-        'id'
+        'id','updated_at','created_at'
     ];
 
     /**

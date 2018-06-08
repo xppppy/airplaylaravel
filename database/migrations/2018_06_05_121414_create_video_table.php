@@ -19,6 +19,7 @@ class CreateVideoTable extends Migration
             $table->string('thum',200);
             $table->integer('sum');
             $table->integer('number');
+            $table->double('hot');
             $table->string('playerUrl',200);
             $table->integer('type_id')->unsigned();
             $table->foreign('type_id')->references('id')->on('type');
