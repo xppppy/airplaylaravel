@@ -13,10 +13,12 @@ class TypeTableSeeder extends Seeder
     {
         $faker = app(Faker\Generator::class);
         $type = ['电视剧','电影','综艺','音乐','动漫','文艺'];
+        $name = ['TV','Moveis','','','',''];
         $remarks = $faker->sentence();
-        foreach ($type as $velue){
+        for ($i = 0 ; $i < count($type) ; $i++ ){
             DB::table('type')->insert([
-                'type' =>$velue,
+                'type' =>$type[$i],
+                'name' =>$name[$i],
                 'remarks' => $remarks
             ]);
         }
