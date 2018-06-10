@@ -14,7 +14,7 @@ class VideoModel extends Authenticatable implements JWTSubject
         'title','thum','sum','number','playerUrl','type_id',
     ];
     protected $hidden = [
-        'updated_at','created_at'
+       'updated_at','created_at'
     ];
     public function type(){
         return $this->belongsTo('App\Models\VideoTypeModel','type_id');

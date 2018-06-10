@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Front;
 
 use App\Http\Controllers\Api\Controller;
+use App\Models\VideoModel;
 use App\Transformers\VideosTransFormer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -24,9 +25,21 @@ class WebController extends Controller
                 ->orderBy('hot','desc')
                 ->select('video.*', 'type.type')
                 ->paginate(5);
-            $aa[$i-1] = $arry;
+            $aa[$i-1][$i]= $arry;
         }
-        print_r($aa);
+//       $aa = VideoModel::with('type')
+//           ->orderByDesc('hot')
+////           ->groupBy('type_id')
+////           ->select('video.*', 'type.type')
+//           ->paginate(10);
+//              ->select(DB::raw('video.*'))
+//            ->where('id',$id)
+//              ->groupBy('type_id')
+//            ->orderByDesc('hot')
+//              ->get();
+//        return $response_arr->transform(collect($aa)->toArray());
+        return collect($aa)->toArray()
+//        return $aa[0][1]
 //            ->Join('type', 'video.type_id', '=', 'type.id')
 //            ->groupBy('type_id')
 //            ->having('type_id','>',5)
