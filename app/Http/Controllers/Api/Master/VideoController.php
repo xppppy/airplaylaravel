@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Master;
 use App\Http\Controllers\Api\Controller;
 use App\Http\Requests\Api\VideoRequest;
 use App\Models\VideoModel;
+use App\Transformers\PublicVideoTransformer;
 use App\Transformers\VideoTransformer;
 use App\Transformers\VideosTransFormer;
 use Dingo\Api\Http\Request;
@@ -36,10 +37,10 @@ class VideoController extends Controller {
         $type = $request->type;
         $name = $request->name;
 
-        $response_arr = new VideosTransFormer();
+        $response_arr = new PublicVideoTransformer();
 
-        $video = DB::table('video')
-            ->leftJoin('type', 'video.type_id', '=', 'type.id')
+        $data = DB::table('video')
+            ->join('type', 'video.type_id', '=', 'type.id')
             ->when($name, function ($query) use ($name) {
                 return $query->where('video.title', 'like', '%' . $name . '%');
             })
@@ -48,9 +49,17 @@ class VideoController extends Controller {
             })
             ->select('video.*', 'type.type')
             ->paginate(10);
-        return $video ?
-               $response_arr->transform(collect($video)->toArray()):
-               $this->response->array(['code'=>100,'msg'=>'操作失败']);
+
+        return $data ?
+                [
+                'code'=>200,
+                'msg'=>'成功',
+                    'result'=>[
+                        'total'=>$data['total'],
+                        'data'=>$response_arr->transform(collect($data)->toArray())
+                    ]
+                ]:
+                $this->response->array(['code'=>100,'msg'=>'操作失败']);
     }
 
     /**

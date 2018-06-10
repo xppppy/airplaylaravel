@@ -6,7 +6,7 @@
  * Time: 13:24
  */
 
-namespace App\Transformers;
+namespace App\Transformers\Master;
 
 use Illuminate\Pagination\Paginator;
 use League\Fractal\TransformerAbstract;
