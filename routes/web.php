@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/test', 'TestController@test',function () {
     return 1;
 });
+Route::get('/td', 'TuDouController@test',function () {
+    return 1;
+});
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

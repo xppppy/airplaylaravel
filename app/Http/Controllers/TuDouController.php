@@ -8,7 +8,7 @@ class TuDouController extends Controller
 {
     public function test()
     {
-        $url = "http://v.pptv.com/show/dq6HBW3TQ4HkYso.html?spm=tv_index_web.sb_2719337.0.1.0.1.0.0.0.0";
+        $url = "http://new-play.tudou.com/v/XMzQ3ODQ1OTYzNg==5d0cefbfbdefbfbd391f";
         $curl = curl_init();    //创建一个新的CURL资源
         curl_setopt($curl, CURLOPT_URL, $url);  //设置URL和相应的选项
         curl_setopt($curl, CURLOPT_HEADER, 0);  //0表示不输出Header，1表示输出
@@ -27,6 +27,12 @@ class TuDouController extends Controller
         $pattern = "/<div.*?class=\"td-listbox__list__item--show\".*?>.*?<\/div>/ism";
 /*        preg_match_all("/<script.*?src=['\"](.*?\.js).*?>/i",$data, $matches);*/
 
+        $head = '/<head.*?>(.*)<\/head>/ism';
+        $script = '/<script([\w\W]*)<\/script>/iU';
+        $link_url ='/<link rel="shortcut icon" href="(.*?)"/is';
+        preg_match_all($script, $data, $headArray); //获取head内容
+//        preg_match_all($link_url, $headArray[0][0], $link_url);//获取来源
+//        preg_match_all($script, $headArray[1][0], $scriptArray);//获取script中的内容
         dump($data);
 //        preg_match_all($a,$content[0][0],$arr);
 //        dump($content);
