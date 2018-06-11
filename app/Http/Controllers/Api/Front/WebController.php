@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api\Front;
 
 use App\Http\Controllers\Api\Controller;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\YouKu;
 use App\Models\VideoModel;
 use App\Models\VideoTypeModel;
 use App\Transformers\Front\WebIndexVideosTransFormer;
@@ -80,10 +81,16 @@ class WebController extends Controller
         ];
         $sourceaddr = $request->sourceaddr;
         $type = $request->type;
-        $reptile = new TestController();
-       $data = $reptile ->test($sourceaddr);
-//       dump($data);
-//       exit;
+        $sour = explode('/',$sourceaddr);
+
+        if ($sour[2] == 'v.qq.com'){
+            $reptile = new TestController();
+            $data = $reptile ->test($sourceaddr);
+        }elseif ($sour[2] == 'v.youku.com'){
+            $reptile = new YouKu();
+            $data = $reptile ->test($sourceaddr);
+        }
+
        return [
            'code'=>200,
            'msg'=>'获取成功',

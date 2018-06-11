@@ -9,6 +9,7 @@ class TestController extends Controller {
     public function test($sourceaddr,$timeout=10) {
         //-----------------------------------------
         $url = $sourceaddr;
+//        $sourceaddr = "https://v.qq.com/x/cover/vxz0cpf5fawnghw.html";
         $curl = curl_init();    //创建一个新的CURL资源
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($curl,CURLOPT_TIMEOUT,$timeout);
@@ -26,12 +27,11 @@ class TestController extends Controller {
         $data = curl_exec($curl);
         $bool = curl_errno($curl);
         curl_close($curl);  //关闭cURL资源，并释放系统资源
-
         //返回0时表示程序执行成功
         if ($bool == 0) {
             $scriptArray = $this->Is_VideoQQ($data);
             $type = $this->GetType($scriptArray);
-            if ($type != '电视剧' || $type != '动漫' || $type != '电影'){
+            if ($type != "电视剧" && $type != "动漫" && $type != "电影"){
                 return [
                     'title'     => $this->GetTitle($scriptArray),
                     'type'      => '其他',
@@ -43,18 +43,18 @@ class TestController extends Controller {
             }
             //'title'=>
 //            dump($this->GetTitle($scriptArray));
-//
+////
 //            dump($this->GetType($scriptArray));
-//
+////
 //            dump($this->Is_TvOrComic($scriptArray,$type,$sourceaddr));
-//
+////
 //            dump($this->GetPic($scriptArray));
-//
+////
 //            dump($this->GetBrief($scriptArray));
-//
+////
 //            dump($this->GetHot($scriptArray));
 //            exit;
-            return  [
+            return [
                 'title'     => $this->GetTitle($scriptArray),
                 'type'      => $this->GetType($scriptArray),
                 'numbUrl'   => $this->Is_TvOrComic($scriptArray,$type,$sourceaddr),
@@ -62,7 +62,6 @@ class TestController extends Controller {
                 'brief'     => $this->GetBrief($scriptArray),
                 'hot'       => $this->GetHot($scriptArray)
             ];
-
         } else {
             return 'error';
         }
@@ -106,11 +105,12 @@ class TestController extends Controller {
             $arr[(int)$index[0]] = ['url'=>"v.qq.com/x/cover/".$k[3].'/'.$k[1].".html"];
         }
         //根据key重新排列数组
-        if (ksort($arr)){
+        if (!empty($arr[1])){
+            ksort($arr);
             return $arr;
-        }else{
-            return false ;
         }
+        return '' ;
+
     }
 
     /**
@@ -142,10 +142,10 @@ class TestController extends Controller {
 //        $tag = '/"tag":\[(.*?)\]/is';
         $title ='/"title":\"(.*?)\"/is';
         preg_match_all($title,$scriptArray[0][4],$tags);
-        if ($tags){
+        if (!empty($tags[1])){
             return $tags[1][0];
         }
-        return false;
+        return '';
     }
 
     /**
@@ -156,10 +156,10 @@ class TestController extends Controller {
     public function GetType($scriptArray){
         $type =  '/"type_name":"(.*?)"/is';
         preg_match_all($type,$scriptArray[0][4],$types);
-        if ($types){
+        if (!empty($types[1])){
             return $types[1][0];
         }
-        return false;
+        return '';
     }
 
     /**
@@ -170,10 +170,10 @@ class TestController extends Controller {
     public function GetBrief($scriptArray){
         $description ='/"description":"(.*?)"/is';
         preg_match_all($description,$scriptArray[0][4],$descriptionArrays);
-        if ($descriptionArrays){
+        if (!empty($descriptionArrays[1])){
             return $descriptionArrays[1][0];
         }
-        return false;
+        return '';
     }
 
     /**
@@ -184,10 +184,10 @@ class TestController extends Controller {
     public function GetPic($scriptArray){
         $horizontal_pic_url = '/"horizontal_pic_url":\"(.*?)\"/';
         preg_match_all($horizontal_pic_url,$scriptArray[0][4],$horizontal_pic_urls);
-        if ($horizontal_pic_urls){
+        if (!empty($horizontal_pic_urls[1])){
             return $horizontal_pic_urls[1][0];
         }
-        return false;
+        return '';
     }
 
     /**
@@ -198,10 +198,10 @@ class TestController extends Controller {
     public function GetHot($scriptArray){
         $douban_score = '/"douban_score":\"(.*?)\"/';
         preg_match_all($douban_score,$scriptArray[0][4],$douban_scores);
-        if ($douban_scores){
+        if (!empty($douban_scores[1])){
             return $douban_scores[1][0];
         }
-        return false;
+        return '5';
     }
 
     /**
@@ -220,7 +220,11 @@ class TestController extends Controller {
             preg_match_all($script, $headArray[1][0], $scriptArray);//获取script中的内容
             return $scriptArray;
         }
-
-        return false;
+        return '';
     }
+    //youku
+//    public function test(){
+//        $youku = new YouKu();
+//        $data = $youku->test();
+//    }
 }
